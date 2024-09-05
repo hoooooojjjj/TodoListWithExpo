@@ -1,5 +1,5 @@
-import { Text } from "react-native";
+import MainScreen from "./screens/MainScreen";
 
 export default function HomeScreen() {
-  return <Text>안녕하세요</Text>;
+  return <MainScreen />;
 }
