@@ -13,6 +13,7 @@ const InputForm = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.addFormContainer}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0} // iOS에서는 적절한 offset을 설정
     >
       <TextInput
         style={styles.inputField}
