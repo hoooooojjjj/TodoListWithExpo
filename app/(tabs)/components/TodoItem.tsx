@@ -1,15 +1,24 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import CheckedBox from "../../../assets/svg/checkbox-uncheck.svg";
+import UncheckBox from "../../../assets/svg/checkbox-checked.svg";
+import DeleteBtn from "../../../assets/svg/delete.svg";
 
 const TodoItem = () => {
   return (
     <View style={styles.todoItemContainer}>
-      <Pressable style={styles.checkBtn} hitSlop={10}></Pressable>
+      <Pressable style={styles.checkBtn} hitSlop={10}>
+        <UncheckBox />
+        <CheckedBox style={styles.CheckedBox} />
+      </Pressable>
+
       <Text style={[styles.todoText, styles.todoTextChecked]}>운동하기</Text>
       <Pressable
         style={(styles.todoDeleteBtn, styles.todoDeleteBtnDone)}
         hitSlop={10}
-      ></Pressable>
+      >
+        <DeleteBtn />
+      </Pressable>
     </View>
   );
 };
@@ -18,31 +27,46 @@ export default TodoItem;
 
 const styles = StyleSheet.create({
   todoItemContainer: {
-    backgroundColor: "rgba(0,0,0,0.1)",
-    height: 41,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 10,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
+    backgroundColor: "#f7f8fa",
   },
   checkBtn: {
-    flex: 1,
-  },
-  todoText: {
-    flex: 10,
-  },
-  todoTextChecked: {
-    flex: 10,
-  },
-  todoDeleteBtn: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "rgba(0,0,0,0.7)",
-    borderWidth: 1,
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    marginRight: 20,
+    width: 20,
+    height: 20,
+    marginRight: 13,
+    borderRadius: 6,
   },
-  todoDeleteBtnDone: {},
+  todoText: {
+    marginRight: "auto",
+    paddingRight: 25,
+    fontSize: 15,
+    lineHeight: 20,
+    color: "#737373",
+  },
+  todoTextChecked: {
+    opacity: 0.3,
+    textDecorationLine: "line-through",
+  },
+  todoDeleteBtn: {
+    opacity: 0.8,
+  },
+  todoDeleteBtnDone: {
+    opacity: 0.3,
+  },
+  CheckedBox: {
+    shadowColor: "#000000",
+    shadowOpacity: 0.14,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+  },
 });

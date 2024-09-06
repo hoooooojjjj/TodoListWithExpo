@@ -8,5 +8,11 @@
     "esModuleInterop": true,
     "jsx": "react-native"
   },
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "metro.config.js"
+  ]
 }
