@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import store from "./reducer/index";
+import TodoApp from "./Todo";
 
 function App() {
-  const [count, setCount] = useState<number>(0);
+  const [state, setState] = useState<number>(store.getState().counter);
 
-  const increase = () => {
-    setCount(count + 1);
-  };
+  useEffect(() => {
+    store.subscribe(() => {
+      setState(store.getState().counter);
+    });
+  }, []);
 
-  const decrease = () => {
-    setCount(count - 1);
-  };
   return (
     <div className="App">
-      <button onClick={increase}>+</button>
-      <p>{count}</p>
-      <button onClick={decrease}>-</button>
+      <button onClick={() => store.dispatch({ type: "INCREASE" })}>+</button>
+      <p>{state}</p>
+      <button onClick={() => store.dispatch({ type: "DECREASE" })}>-</button>
+      <TodoApp />
     </div>
   );
 }
