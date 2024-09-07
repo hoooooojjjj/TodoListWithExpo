@@ -20,8 +20,11 @@ function TodoApp() {
   };
 
   useEffect(() => {
+    let prevState = store.getState().todo;
     store.subscribe(() => {
-      setTodo(store.getState().todo);
+      if (prevState !== store.getState().todo) {
+        setTodo(store.getState().todo);
+      }
     });
   }, []);
 

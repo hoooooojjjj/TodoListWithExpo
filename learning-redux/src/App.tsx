@@ -7,8 +7,12 @@ function App() {
   const [state, setState] = useState<number>(store.getState().counter);
 
   useEffect(() => {
+    let prevState = store.getState().counter;
+
     store.subscribe(() => {
-      setState(store.getState().counter);
+      if (prevState !== store.getState().counter) {
+        setState(store.getState().counter);
+      }
     });
   }, []);
 
