@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import store from "./reducer/index";
-import TodoApp from "./Todo";
+import store, { RootState } from "./reducer/index";
+import TodoApp from "./components/Todo";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const [state, setState] = useState<number>(store.getState().counter);
+  // const [state, setState] = useState<number>(store.getState().counter);
+  const counter = useSelector((state: RootState) => state.counter);
 
-  useEffect(() => {
-    let prevState = store.getState().counter;
+  const counterDispatch = useDispatch();
 
-    store.subscribe(() => {
-      if (prevState !== store.getState().counter) {
-        setState(store.getState().counter);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   let prevState = store.getState().counter;
+
+  //   store.subscribe(() => {
+  //     if (prevState !== store.getState().counter) {
+  //       setState(store.getState().counter);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className="App">
-      <button onClick={() => store.dispatch({ type: "INCREASE" })}>+</button>
-      <p>{state}</p>
-      <button onClick={() => store.dispatch({ type: "DECREASE" })}>-</button>
+      {/* <button onClick={() => store.dispatch({ type: "INCREASE" })}>+</button>
+      <p>{counter}</p>
+      <button onClick={() => store.dispatch({ type: "DECREASE" })}>-</button> */}
+      <button onClick={() => counterDispatch({ type: "INCREASE" })}>+</button>
+      <p>{counter}</p>
+      <button onClick={() => counterDispatch({ type: "DECREASE" })}>-</button>
       <TodoApp />
     </div>
   );

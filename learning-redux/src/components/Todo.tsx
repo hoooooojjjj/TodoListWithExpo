@@ -1,14 +1,24 @@
-import React, { useEffect, useState } from "react";
-import type { Todo } from "../type";
-import store from "../reducer";
+import React, { useState } from "react";
+import store, { RootState } from "../reducer";
+import { useDispatch, useSelector } from "react-redux";
 
 function TodoApp() {
   const [text, setText] = useState<string>("");
 
-  const [todo, setTodo] = useState<Todo[]>(store.getState().todo);
+  // const [todo, setTodo] = useState<Todo[]>(store.getState().todo);
+  const todo = useSelector((state: RootState) => state.todo);
+
+  const TodoDispatch = useDispatch();
 
   const addTodo = () => {
-    store.dispatch({
+    // store.dispatch({
+    //   type: "ADD_TODO",
+    //   data: {
+    //     id: Date.now(),
+    //     todo: text,
+    //   },
+    // });
+    TodoDispatch({
       type: "ADD_TODO",
       data: {
         id: Date.now(),
@@ -19,14 +29,14 @@ function TodoApp() {
     setText("");
   };
 
-  useEffect(() => {
-    let prevState = store.getState().todo;
-    store.subscribe(() => {
-      if (prevState !== store.getState().todo) {
-        setTodo(store.getState().todo);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   let prevState = store.getState().todo;
+  //   store.subscribe(() => {
+  //     if (prevState !== store.getState().todo) {
+  //       setTodo(store.getState().todo);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div>
