@@ -3,6 +3,7 @@ import "./App.css";
 import store, { RootState } from "./reducer/index";
 import TodoApp from "./components/Todo";
 import { useDispatch, useSelector } from "react-redux";
+import Post from "./components/Post";
 
 function App() {
   // const [state, setState] = useState<number>(store.getState().counter);
@@ -29,6 +30,7 @@ function App() {
       <p>{counter}</p>
       <button onClick={() => counterDispatch({ type: "DECREASE" })}>-</button>
       <TodoApp />
+      <Post />
     </div>
   );
 }

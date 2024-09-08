@@ -1,10 +1,13 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import counter from "./counter";
 import todo from "./todo";
+import post from "./post";
+import { thunk } from "redux-thunk";
 
 const rootReducer = combineReducers({
   counter,
   todo,
+  post,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
@@ -16,7 +19,7 @@ const loggerMiddleware = (store: any) => (next: any) => (action: any) => {
   next(action);
 };
 
-const middleware = applyMiddleware(loggerMiddleware);
+const middleware = applyMiddleware(thunk, loggerMiddleware);
 
 const store = createStore(rootReducer, undefined, middleware);
 
