@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import type { Todo } from "./type";
-import store from "./reducer";
+import type { Todo } from "../type";
+import store from "../reducer";
 
 function TodoApp() {
   const [text, setText] = useState<string>("");
