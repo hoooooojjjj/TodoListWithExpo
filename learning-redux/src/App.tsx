@@ -1,15 +1,16 @@
 import React from "react";
 import "./App.css";
-import store, { RootState } from "./reducer/index";
+import { RootState } from "./reducer/rtkStore";
 import TodoApp from "./components/Todo";
 import { useDispatch, useSelector } from "react-redux";
-import Post from "./components/Post";
+import RtkTodo from "./components/RtkTodo";
+// import Post from "./components/Post";
 
 function App() {
   // const [state, setState] = useState<number>(store.getState().counter);
-  const counter = useSelector((state: RootState) => state.counter);
+  // const counter = useSelector((state: RootState) => state.counter);
 
-  const counterDispatch = useDispatch();
+  // const counterDispatch = useDispatch();
 
   // useEffect(() => {
   //   let prevState = store.getState().counter;
@@ -26,11 +27,12 @@ function App() {
       {/* <button onClick={() => store.dispatch({ type: "INCREASE" })}>+</button>
       <p>{counter}</p>
       <button onClick={() => store.dispatch({ type: "DECREASE" })}>-</button> */}
-      <button onClick={() => counterDispatch({ type: "INCREASE" })}>+</button>
+      {/* <button onClick={() => counterDispatch({ type: "INCREASE" })}>+</button>
       <p>{counter}</p>
       <button onClick={() => counterDispatch({ type: "DECREASE" })}>-</button>
       <TodoApp />
-      <Post />
+      <Post /> */}
+      <RtkTodo />
     </div>
   );
 }

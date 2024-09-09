@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import store, { RootState } from "../reducer";
+import { RootState } from "../reducer";
 import { useDispatch, useSelector } from "react-redux";
 
 function TodoApp() {

@@ -23,4 +23,4 @@ const middleware = applyMiddleware(thunk, loggerMiddleware);
 
 const store = createStore(rootReducer, undefined, middleware);
 
-export default store;
+// export default store;
