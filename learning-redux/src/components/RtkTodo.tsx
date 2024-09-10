@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../reducer/rtkStore";
-import { addTodo } from "../reducer/rtkReducer";
+import { addTodo, todoReducer } from "../reducer/rtkReducer";
 
 function RtkTodo() {
   const [text, setText] = useState<string>("");
@@ -17,6 +17,8 @@ function RtkTodo() {
     TodoDispatch(addTodo({ id: Date.now(), todo: text }));
     setText("");
   };
+
+  console.log(todoReducer);
   return (
     <div>
       <input
