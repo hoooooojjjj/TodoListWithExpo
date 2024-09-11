@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { RootState } from "./reducer/rtkStore";
 import TodoApp from "./components/Todo";
@@ -7,6 +7,14 @@ import RtkTodo from "./components/RtkTodo";
 // import Post from "./components/Post";
 
 function App() {
+  const getMock = async () => {
+    const res = await fetch("https://example.com/user");
+    const data = await res.json();
+    console.log(data);
+  };
+  useEffect(() => {
+    getMock();
+  }, []);
   // const [state, setState] = useState<number>(store.getState().counter);
   // const counter = useSelector((state: RootState) => state.counter);
 
