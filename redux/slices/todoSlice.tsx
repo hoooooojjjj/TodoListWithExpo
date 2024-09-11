@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TodoAction {
   text: string;
-  state: "done" | "todo";
+  status: "done" | "todo";
 }
 
 type Todo = {
@@ -10,7 +10,7 @@ type Todo = {
   todos: {
     id: number;
     text: string;
-    state: "done" | "todo";
+    status: "done" | "todo";
   }[];
 };
 
@@ -25,7 +25,7 @@ export const todoSlice = createSlice({
       state.todos.push({
         id: state.currentId++,
         text: action.payload.text.trim(),
-        state: action.payload.state,
+        status: action.payload.status,
       });
     },
   },
