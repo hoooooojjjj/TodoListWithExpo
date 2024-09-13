@@ -6,9 +6,24 @@ import {
   TextInput,
   Text,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { addTodo } from "@/redux/slices/todoSlice";
 
 const InputForm = () => {
+  const [text, setText] = useState<string>("");
+  const todos = useSelector((state: RootState) => state.todo.todos);
+  const todosDispatch = useDispatch<AppDispatch>();
+
+  const onSubmit = () => {
+    if (!text) {
+      return;
+    }
+    todosDispatch(addTodo(text));
+    setText("");
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -18,9 +33,16 @@ const InputForm = () => {
       <TextInput
         style={styles.inputField}
         placeholder="할 일을 작성해주세요"
+        value={text}
+        // onChangeText로 입력된 텍스트를 업데이트
+        onChangeText={setText}
+        // onSubmitEditing으로 엔터를 눌렀을 때 onSubmit 함수 실행
+        onSubmitEditing={onSubmit}
       ></TextInput>
       <Pressable style={styles.addButton}>
-        <Text style={styles.addButtonText}>+</Text>
+        <Text style={styles.addButtonText} onPress={onSubmit}>
+          +
+        </Text>
       </Pressable>
     </KeyboardAvoidingView>
   );

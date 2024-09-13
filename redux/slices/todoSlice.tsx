@@ -20,13 +20,13 @@ export const todoSlice = createSlice({
   initialState: {
     currentId: 0,
     todos: [],
-  },
+  } as Todo,
   reducers: {
-    addTodo: (state: Todo, action: PayloadAction<TodoAction>) => {
+    addTodo: (state: Todo, action: PayloadAction<string>) => {
       state.todos.push({
         id: state.currentId++,
-        text: action.payload.text.trim(),
-        status: action.payload.status,
+        text: action.payload.trim(),
+        status: "todo",
       });
     },
     updateTodo: (state: Todo, action: PayloadAction<TodoAction>) => {
