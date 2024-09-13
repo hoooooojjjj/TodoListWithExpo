@@ -39,10 +39,8 @@ const InputForm = () => {
         // onSubmitEditing으로 엔터를 눌렀을 때 onSubmit 함수 실행
         onSubmitEditing={onSubmit}
       ></TextInput>
-      <Pressable style={styles.addButton} hitSlop={32}>
-        <Text style={styles.addButtonText} onPress={onSubmit}>
-          +
-        </Text>
+      <Pressable style={styles.addButton} hitSlop={10} onPress={onSubmit}>
+        <Text style={styles.addButtonText}>+</Text>
       </Pressable>
     </KeyboardAvoidingView>
   );
