@@ -7,13 +7,13 @@ import {
   Text,
 } from "react-native";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 import { addTodo } from "@/redux/slices/todoSlice";
 
 const InputForm = () => {
   const [text, setText] = useState<string>("");
-  const todos = useSelector((state: RootState) => state.todo.todos);
+
   const todosDispatch = useDispatch<AppDispatch>();
 
   const onSubmit = () => {
@@ -39,7 +39,7 @@ const InputForm = () => {
         // onSubmitEditing으로 엔터를 눌렀을 때 onSubmit 함수 실행
         onSubmitEditing={onSubmit}
       ></TextInput>
-      <Pressable style={styles.addButton}>
+      <Pressable style={styles.addButton} hitSlop={32}>
         <Text style={styles.addButtonText} onPress={onSubmit}>
           +
         </Text>

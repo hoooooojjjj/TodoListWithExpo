@@ -35,8 +35,7 @@ export const todoSlice = createSlice({
           return {
             id: action.payload.id,
             text: action.payload.text.trim(),
-            status:
-              action.payload.status === "done" ? "todo" : action.payload.status,
+            status: action.payload.status === "done" ? "todo" : "done",
           };
         }
         return todo;

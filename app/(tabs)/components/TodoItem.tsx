@@ -3,18 +3,49 @@ import React from "react";
 import CheckedBox from "../../../assets/svg/checkbox-uncheck.svg";
 import UncheckBox from "../../../assets/svg/checkbox-checked.svg";
 import DeleteBtn from "../../../assets/svg/delete.svg";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { deleteTodo, updateTodo } from "@/redux/slices/todoSlice";
 
-const TodoItem = () => {
+type Props = {
+  id: number;
+  text: string;
+  status: "todo" | "done";
+};
+
+const TodoItem = (props: Props) => {
+  const Dispatch = useDispatch<AppDispatch>();
+
+  const onCheck = () => {
+    Dispatch(updateTodo({ ...props }));
+  };
+
+  const onDelete = () => {
+    Dispatch(deleteTodo({ ...props }));
+  };
   return (
     <View style={styles.todoItemContainer}>
-      <Pressable style={styles.checkBtn} hitSlop={10}>
-        <UncheckBox />
-        <CheckedBox style={styles.CheckedBox} />
+      <Pressable style={styles.checkBtn} hitSlop={10} onPress={onCheck}>
+        {props.status === "todo" ? (
+          <UncheckBox />
+        ) : (
+          <CheckedBox style={styles.CheckedBox} />
+        )}
       </Pressable>
-
-      <Text style={[styles.todoText, styles.todoTextChecked]}>운동하기</Text>
+      <Text
+        style={
+          props.status === "todo" ? styles.todoText : styles.todoTextChecked
+        }
+      >
+        {props.text}
+      </Text>
       <Pressable
-        style={(styles.todoDeleteBtn, styles.todoDeleteBtnDone)}
+        onPress={onDelete}
+        style={
+          props.status === "todo"
+            ? styles.todoDeleteBtn
+            : styles.todoDeleteBtnDone
+        }
         hitSlop={10}
       >
         <DeleteBtn />
@@ -51,6 +82,10 @@ const styles = StyleSheet.create({
     color: "#737373",
   },
   todoTextChecked: {
+    marginRight: "auto",
+    paddingRight: 25,
+    fontSize: 15,
+    lineHeight: 20,
     opacity: 0.3,
     textDecorationLine: "line-through",
   },
